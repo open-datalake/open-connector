@@ -44,6 +44,7 @@ safe:
 	safety check
 
 layer:
+	# Source: https://github.com/aws-samples/aws-lambda-layer-builder
 	# May require chmod +x ./aws-layers/make-layer.sh
 	sh ./aws-layers/make-layer.sh open_connector_s3_s3 python3.8 ./aws-layers/s3_s3.txt
 
