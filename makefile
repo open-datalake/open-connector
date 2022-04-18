@@ -43,15 +43,23 @@ safe:
 	echo "Check dependencies vulnerabilities"
 	safety check
 
+build2:
+	@echo "Building source-s3"
+	cd ./connectors/source_s3/; python setup.py -q sdist bdist_wheel
+
 build:
 	@echo "Building open-connector"
 	python setup.py -q sdist bdist_wheel
 
 	@echo "Building source-s3"
-	python ./connectors/source_s3/setup.py -q sdist bdist_wheel
+	cd ./connectors/source_s3/; \
+	python setup.py -q sdist bdist_wheel
+	@mv -v ./connectors/source_s3/dist/* ./dist/
 
 	@echo "Building destination-s3"
-	python ./connectors/destination_s3/setup.py -q sdist bdist_wheel
+	cd ./connectors/destination_s3/; \
+	python setup.py -q sdist bdist_wheel
+	@mv -v ./connectors/destination_s3/dist/* ./dist/
 
 	@echo "Uploading and indexing to: pypi.joffreybvn.be"
 	s3pypi dist/* --bucket pypi.joffreybvn.be --put-root-index --force --verbose --profile private
