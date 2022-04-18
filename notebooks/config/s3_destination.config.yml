@@ -1,0 +1,5 @@
+bucket_name: 'bucket_name'
+key_prefix: 'key_prefix'
+dataset_name: 'dataset_name'
+table_name: table_name
+output_format: output_format

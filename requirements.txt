@@ -1,0 +1,2 @@
+# Use setup.py for declaring dependencies
+.
