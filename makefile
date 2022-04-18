@@ -43,9 +43,9 @@ safe:
 	echo "Check dependencies vulnerabilities"
 	safety check
 
-build2:
-	@echo "Building source-s3"
-	cd ./connectors/source_s3/; python setup.py -q sdist bdist_wheel
+layer:
+	# May require chmod +x ./aws-layers/make-layer.sh
+	sh ./aws-layers/make-layer.sh open_connector_s3_s3 python3.8 ./aws-layers/s3_s3.txt
 
 build:
 	@echo "Building open-connector"
