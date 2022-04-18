@@ -63,7 +63,7 @@ build:
 	@mv -v ./connectors/destination_s3/dist/* ./dist/
 
 	@echo "Uploading and indexing to: pypi.joffreybvn.be"
-	s3pypi dist/* --bucket pypi.joffreybvn.be --put-root-index --force --verbose --profile private
+	s3pypi dist/* --bucket pypi.joffreybvn.be --put-root-index --force --verbose # --profile private
 
 dev-dependencies:
 	pip install -r requirements.dev.txt
