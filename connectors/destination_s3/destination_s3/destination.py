@@ -32,7 +32,7 @@ class OpenS3Destination(DestinationOpenConnector):
             # Create file path and name
             path_elements = [key_prefix, dataset_name, table_name, f'ingestion_time={ingestion_time}']
             file_path: str = '/'.join(filter(lambda entry: entry, path_elements))
-            file_name: str = f"{dataset_name}_{table_name}.{output_format}"
+            file_name: str = f"{dataset_name}_{table_name}_{ingestion_time}.{output_format}"
 
             # Upload to S3
             self.s3.upload_fileobj(
