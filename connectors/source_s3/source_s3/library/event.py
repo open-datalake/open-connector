@@ -1,5 +1,4 @@
 from typing import Iterable
-from open_connector.events.sns import EmailsS3SNSEvent
 from open_connector.protocol.pipeline import OpenMessage
 from source_s3 import OpenS3Source
 

@@ -1,6 +1,6 @@
-from .emails import EmailLandingSource
+from .event import IterableSource
 
 
 __all__ = [
-    'EmailLandingSource'
+    'IterableSource'
 ]
