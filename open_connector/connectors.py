@@ -1,9 +1,10 @@
 from abc import ABC, abstractmethod
-from typing import Any, Dict, Iterable
-import yaml
+from typing import Any, Dict, Iterable, Optional
+from datetime import datetime
 import logging
+import yaml
 from . import config
-from .protocol.pipeline import OpenMessage
+from .protocol.pipeline import OpenMessage, Metadata
 
 # Create logger
 logger = logging.getLogger(__name__)
@@ -39,6 +40,21 @@ class SourceOpenConnector(ABC, OpenConnector):
     def read(self, *args, **kwargs) -> Iterable[OpenMessage]:
         """Produce a stream of OpenMessage"""
         pass
+
+    @staticmethod
+    def open_message(
+            file_object: bytes,
+            output_format: Optional[str] = None
+    ) -> OpenMessage:
+        """Create and return an OpenMessage object."""
+
+        return OpenMessage(
+            data=file_object,
+            metadata=Metadata(
+                ingestion_time=datetime.now().isoformat(),
+                output_format=output_format or "object"
+            )
+        )
 
 
 class DestinationOpenConnector(ABC, OpenConnector):
